@@ -11,4 +11,6 @@ namespace gs {
     typedef WORD int16_t;
     typedef BYTE int8_t;
 
+    typedef CONST_STRPTR unsafe_cstr_t;
+
 }

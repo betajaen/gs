@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -f "./source/include/gs/gs.hpp" ]; then
+if [ ! -f "./include/gs/util/types.hpp" ]; then
   echo "Error: Please run this script from the main gs directory. i.e. > sh tests/gs-fs-uae.sh"
   exit 1
 fi
@@ -8,7 +8,7 @@ fi
 ROM_DEFAULT="./tests/kicka1200.rom"
 FASTRAM_DEFAULT="4096"
 MODEL_DEFAULT="a1200"
-OTHER_ARGS="--hard-drive_0=./progdir  --automatic_input_grab=0 --floppy_drive_volume_empty=0"
+OTHER_ARGS="--hard-drive_0=./progdir  --automatic_input_grab=0 --floppy_drive_volume_empty=0 --stdout --console_debugger=1"
 
 while getopts ":r:f:m:" opt; do
   case $opt in
