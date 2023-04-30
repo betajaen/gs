@@ -26,6 +26,7 @@ target_compile_options(gs PUBLIC
         )
 
 target_compile_definitions(gs PUBLIC
+        gs_version="2.0.0"
 )
 
 set_target_properties(gs

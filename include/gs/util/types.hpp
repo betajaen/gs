@@ -10,6 +10,8 @@ namespace gs {
     typedef LONG int32_t;
     typedef WORD int16_t;
     typedef BYTE int8_t;
+    typedef APTR ptr_t;
+    typedef ULONG size_t;
 
     typedef CONST_STRPTR unsafe_cstr_t;
 

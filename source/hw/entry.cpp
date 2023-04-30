@@ -12,6 +12,6 @@ namespace gs::hw {
 int main(void) {
     gs::hw::cli_output = Output();
 
-    gs::info("goodsoup");
+    gs::info_fmt("goodsoup %s", gs_version);
     return RETURN_OK;
 }
