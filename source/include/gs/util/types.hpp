@@ -1,0 +1,14 @@
+#pragma once
+
+#include <exec/types.h>
+
+namespace gs {
+
+    typedef ULONG uint32_t;
+    typedef UWORD uint16_t;
+    typedef UBYTE uint8_t;
+    typedef LONG int32_t;
+    typedef WORD int16_t;
+    typedef BYTE int8_t;
+
+}
