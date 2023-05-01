@@ -1,9 +1,13 @@
 #include <gs/util/types.hpp>
 #include <gs/util/debug.hpp>
+#include <gs/util/memory.hpp>
+#include <gs/enums/return_code.hpp>
+
 
 namespace gs {
-    int entry() {
+    return_code_t entry() {
         gs::info_fmt("gs %s", gs_version);
-        return 0;
+        
+        return return_code_t::Ok;
     }
 }

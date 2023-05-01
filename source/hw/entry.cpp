@@ -3,17 +3,27 @@
 #include <gs/util/memory.hpp>
 
 namespace gs {
+    enum class return_code_t : LONG;
+
     BPTR cli_output = 0;
-    int entry();
+
+    #if defined(gs_debug_memory) && gs_debug_memory == 1
+    namespace util {
+        void debug_allocations();
+    }
+    #endif
+
+    return_code_t entry();
+
+    static inline int gs_main(void) {
+        cli_output = Output();
+        return_code_t rv = gs::entry();
+
+        return (int) rv;
+    }
+
 }
 
 int main(void) {
-    gs::cli_output = Output();
-
-    int rv = gs::entry();
-#if defined(gs_debug_memory) && gs_debug_memory == 1
-    gs::util::debug_allocations();
-#endif
-
-    return rv;
+    return gs::gs_main();
 }
