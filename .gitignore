@@ -6,11 +6,16 @@
 *.pch
 
 progdir/gs
+progdir/data
 progdir/*.LA0
 progdir/*.LA1
 progdir/*.LA2
+media/cds
+media/digital
+media/dvd
 
 tests/*.rom
+
 
 .idea
 cmake-build-*
