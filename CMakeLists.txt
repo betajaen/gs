@@ -9,7 +9,7 @@ set(gs_common_src
         source/util/debug.cpp
         source/util/string.cpp
         source/util/memory.cpp
-        source/common/configuration.cpp)
+        source/common/configuration.cpp source/util/assert.cpp)
 
 set(gs_common_compile_options
         -ldebug

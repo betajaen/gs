@@ -5,6 +5,7 @@
 #include <gs/util/meta/destructors.hpp>
 #include <gs/util/meta/movers.hpp>
 #include <gs/util/meta/selectors.hpp>
+#include <gs/util/assert.hpp>
 
 namespace gs::util {
 
@@ -87,14 +88,17 @@ namespace gs::util {
         }
 
         template<typename T>
-        T* get() {
+        T* get_ptr() {
             static_assert(meta::any_of<T, TTypes...>(), "Not valid type");
-            if (is_value<T>()) {
-                return (T*) m_data;
-            }
-            else {
-                return nullptr;
-            }
+
+            return is_value<T>() ? (T*) m_data : nullptr;
+        }
+
+        template<typename T>
+        T& get() {
+            static_assert(meta::any_of<T, TTypes...>(), "Not valid type");
+            MUST(is_value<T>());
+            return *((T*) m_data);
         }
 
         template<typename T>

@@ -22,7 +22,7 @@ namespace gs::common {
         else if (__commandline != nullptr) {
             auto rv = util::string_parse_unsigned_int(__commandline);
             if (rv.has_value()) {
-                start_param = *(rv.get<uint32_t>());
+                start_param = rv.get<uint32_t>();
             }
         }
     }
