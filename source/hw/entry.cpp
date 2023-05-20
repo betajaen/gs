@@ -2,7 +2,7 @@
 #include <proto/dos.h>
 #include <gs/util/memory.hpp>
 #include <gs/util/debug.hpp>
-#include <gs/hw/start_param.hpp>
+#include <gs/common/configuration.hpp>
 
 
 namespace gs {
@@ -21,7 +21,7 @@ namespace gs {
     static inline int gs_main(void) {
         g_cli_output = Output();
 
-        hw::g_start_param.parse_from_entry();
+        common::g_configuration.parse_from_entry();
         return_code_t rv = gs::entry();
 
         return (int) rv;

@@ -8,7 +8,8 @@ set(gs_common_src
         source/hw/entry.cpp
         source/util/debug.cpp
         source/util/string.cpp
-        source/util/memory.cpp source/hw/start_param.cpp)
+        source/util/memory.cpp
+        source/common/configuration.cpp)
 
 set(gs_common_compile_options
         -ldebug
@@ -31,7 +32,7 @@ add_compile_definitions(
 add_executable(gs
         source/game/main.cpp
         ${gs_common_src}
-        )
+        include/gs/util/pod.hpp)
 
 target_include_directories(gs PUBLIC ${gs_common_include})
 set_target_properties(gs PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/progdir")
