@@ -8,7 +8,7 @@ set(gs_common_src
         source/hw/entry.cpp
         source/util/debug.cpp
         source/util/string.cpp
-        source/util/memory.cpp)
+        source/util/memory.cpp source/hw/start_param.cpp)
 
 set(gs_common_compile_options
         -ldebug

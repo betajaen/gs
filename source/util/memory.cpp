@@ -24,47 +24,47 @@ namespace gs::util {
 
 #if defined(gs_debug_memory) && gs_debug_memory == 1
 
-    static allocation_t *head_allocation = nullptr, *tail_allocation = nullptr;
-    static uint32_t max_allocations = 0, current_allocations = 0;
+    static allocation_t *g_head_allocation = nullptr, *g_tail_allocation = nullptr;
+    static uint32_t g_max_allocations = 0, g_current_allocations = 0;
 
     void push_tracked_allocation(allocation_t* allocation) {
 
-        current_allocations++;
-        if (current_allocations >= max_allocations)
-            max_allocations = current_allocations;
+        g_current_allocations++;
+        if (g_current_allocations >= g_max_allocations)
+            g_max_allocations = g_current_allocations;
 
-        if (head_allocation == nullptr) {
-            head_allocation = tail_allocation = allocation;
+        if (g_head_allocation == nullptr) {
+            g_head_allocation = g_tail_allocation = allocation;
             allocation->prev = allocation->next = nullptr;
         }
         else {
-            tail_allocation->next = allocation;
-            allocation->prev = tail_allocation;
-            tail_allocation = allocation;
+            g_tail_allocation->next = allocation;
+            allocation->prev = g_tail_allocation;
+            g_tail_allocation = allocation;
         }
 
     }
 
     void pop_tracked_allocation(allocation_t* allocation) {
 
-        if (current_allocations == 0) {
+        if (g_current_allocations == 0) {
             gs::warn_fmt("Allocation released twice!");
             return;
         }
 
-        current_allocations--;
+        g_current_allocations--;
 
-        if (head_allocation == allocation && tail_allocation == allocation) {
-            head_allocation = nullptr;
-            tail_allocation = nullptr;
+        if (g_head_allocation == allocation && g_tail_allocation == allocation) {
+            g_head_allocation = nullptr;
+            g_tail_allocation = nullptr;
         }
-        else if (head_allocation == allocation) {
-            head_allocation = allocation->next;
-            head_allocation->prev = nullptr;
+        else if (g_head_allocation == allocation) {
+            g_head_allocation = allocation->next;
+            g_head_allocation->prev = nullptr;
         }
-        else if (tail_allocation == allocation) {
-            tail_allocation = allocation->prev;
-            tail_allocation->next = nullptr;
+        else if (g_tail_allocation == allocation) {
+            g_tail_allocation = allocation->prev;
+            g_tail_allocation->next = nullptr;
         }
         else {
             allocation_t* after = allocation->next;
@@ -80,7 +80,7 @@ namespace gs::util {
 
     void debug_allocations() {
 
-        allocation_t* allocation = head_allocation;
+        allocation_t* allocation = g_head_allocation;
         uint32_t counter = 0;
         while(allocation != nullptr) {
             ptr_t user = ptr_add<ptr_t>(allocation, sizeof(allocation_t));
@@ -89,12 +89,12 @@ namespace gs::util {
             counter++;
             allocation = allocation->next;
         }
-        debug_fmt("%lu total allocations of %lu maximum.", counter, max_allocations);
+        debug_fmt("%lu total allocations of %lu maximum.", counter, g_max_allocations);
 
     }
 
     bool check_for_allocation(allocation_t* test) {
-        allocation_t* allocation = head_allocation;
+        allocation_t* allocation = g_head_allocation;
         while(allocation != nullptr) {
             if (allocation == test)
                 return true;
