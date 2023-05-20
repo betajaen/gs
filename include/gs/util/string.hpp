@@ -12,7 +12,7 @@ namespace gs::util {
 
     int32_t string_last_index_of(unsafe_cstr_t str, char search);
 
-    uint32_t string_parse_unsigned_int(unsafe_cstr_t str);
+    optional_t<uint32_t> string_parse_unsigned_int(unsafe_cstr_t str);
 
     bool string_try_parse_unsigned_int(unsafe_cstr_t str, uint32_t& out_value);
 }

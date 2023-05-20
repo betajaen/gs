@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 project(gs)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(gs_common_src
@@ -32,7 +32,7 @@ add_compile_definitions(
 add_executable(gs
         source/game/main.cpp
         ${gs_common_src}
-        include/gs/util/pod.hpp)
+)
 
 target_include_directories(gs PUBLIC ${gs_common_include})
 set_target_properties(gs PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/progdir")
