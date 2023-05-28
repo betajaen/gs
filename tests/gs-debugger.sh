@@ -1,0 +1,1 @@
+socat pty,raw,echo=0,link=/tmp/gs_debug -,raw,echo=0

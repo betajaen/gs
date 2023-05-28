@@ -83,7 +83,7 @@ if ! [[ "$FASTRAM" =~ ^[0-9]+$ ]]; then
   exit 1
 fi
 
-UAE_ARGS="--kickstart_file=$ROM --amiga_model=$MODEL --fast_memory=$FASTRAM $OTHER_ARGS"
+UAE_ARGS="--kickstart_file=$ROM --amiga_model=$MODEL --fast_memory=$FASTRAM --serial_port=/tmp/gs_debug $OTHER_ARGS"
 
 if [ "$(uname)" == "Darwin" ]; then
   # MacOS
