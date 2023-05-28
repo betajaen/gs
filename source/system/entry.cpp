@@ -29,6 +29,6 @@ namespace gs {
 
 }
 
-int main(void) {
+int gs_main(void) {
     return gs::gs_main();
 }
