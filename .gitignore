@@ -20,3 +20,4 @@ tests/*.rom
 .idea
 cmake-build-*
 .DS_Store
+progdir/gs_convert_data
