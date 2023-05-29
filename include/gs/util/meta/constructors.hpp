@@ -2,7 +2,16 @@
 
 #include <gs/util/pod.hpp>
 #include <gs/util/meta/equality.hpp>
-#include <new>
+
+inline void* operator new(std::size_t, void* ptr) noexcept
+{
+    return ptr;
+}
+
+inline void* operator new[](std::size_t, void* ptr) noexcept
+{
+    return ptr;
+}
 
 namespace gs::util::meta {
 
