@@ -8,11 +8,13 @@ set(gs_common_src
         source/system/start.cpp
         source/system/debugger.c
         source/system/entry.cpp
+        source/system/file.cpp
         source/util/debug.cpp
         source/util/string.cpp
         source/util/memory.cpp
+        source/util/assert.cpp
         source/common/configuration.cpp
-        source/util/assert.cpp)
+)
 
 set(gs_common_include include)
 
@@ -29,7 +31,9 @@ add_compile_options(
         -fno-exceptions
         -fno-rtti
         -fno-threadsafe-statics
+        -fomit-frame-pointer
         -m68020
+        -Os
 )
 
 # ------------------------------------------
