@@ -11,7 +11,8 @@ extern int gs_main();
 int main() {
 
     if (SysBase == nullptr) {
-        ERROR_STR("SysBase is null!");
+        SysBase = (ExecBase*) (*((struct Library **) 4));
+        WARN_STR("SysBase is null!");
         return RETURN_FAIL;
     }
 
