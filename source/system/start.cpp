@@ -1,14 +1,17 @@
 #include <proto/exec.h>
 #include <proto/dos.h>
-#include <gs/system/debugger.hpp>
+#include <gs/system/debug.hpp>
 
 int __initlibraries=0;
 
 struct DosLibrary* DOSBase = nullptr;
 
-extern int gs_main();
+namespace gs {
+    int main();
+}
 
 int main() {
+    int rv;
 
     if (SysBase == nullptr) {
         SysBase = (ExecBase*) (*((struct Library **) 4));
@@ -24,9 +27,12 @@ int main() {
     }
 
     INFO_STR("Goodsoup.");
+    rv = gs::main();
+
+    exit_function:
 
     CloseLibrary((Library*) DOSBase);
     DOSBase = nullptr;
 
-    return 0;
+    return rv;
 }

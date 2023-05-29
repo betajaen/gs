@@ -1,6 +1,6 @@
 #include <gs/util/types.hpp>
-#include <gs/util/debug.hpp>
 #include <gs/util/memory.hpp>
+#include <gs/system/debug.hpp>
 
 #include <proto/exec.h>
 
@@ -48,7 +48,7 @@ namespace gs::util {
     void pop_tracked_allocation(allocation_t* allocation) {
 
         if (g_current_allocations == 0) {
-            gs::warn_fmt("Allocation released twice!");
+            WARN_STR("Allocation released twice!");
             return;
         }
 
@@ -85,11 +85,11 @@ namespace gs::util {
         while(allocation != nullptr) {
             ptr_t user = ptr_add<ptr_t>(allocation, sizeof(allocation_t));
             size_t size = ptr_length(user, allocation->footer);
-            debug_fmt("%lu. 0x%08lx %lu %lx", counter, (size_t) user, size, allocation->comment);
+            DEBUG_FMT("%lu. 0x%08lx %lu %lx", counter, (size_t) user, size, allocation->comment);
             counter++;
             allocation = allocation->next;
         }
-        debug_fmt("%lu total allocations of %lu maximum.", counter, g_max_allocations);
+        DEBUG_FMT("%lu total allocations of %lu maximum.", counter, g_max_allocations);
 
     }
 
@@ -113,14 +113,14 @@ namespace gs::util {
 #if defined(gs_debug_memory) && gs_debug_memory == 1
         // double free
         if (check_for_allocation(allocation) == false) {
-            warn_fmt("Double free for %p.", allocated_memory);
+            WARN_FMT("Double free for %p.", allocated_memory);
             return false;
         }
 #endif
 
         // guard overwrite or underwrite!
         if (footer->allocation != allocation) {
-            warn_fmt("Over or underwrite detected %p.", allocated_memory);
+            WARN_FMT("Over or underwrite detected %p.", allocated_memory);
             return false;
         }
 
@@ -140,7 +140,7 @@ namespace gs::util {
         ptr_t memory_block = AllocVec(total_size, requirements);
 
         if (memory_block == nullptr) {
-            warn_fmt("Could not allocated %lu bytes.", num_bytes);
+            ERROR_FMT("Could not allocate %lu bytes.", num_bytes);
             return nullptr;
         }
 
@@ -162,7 +162,7 @@ namespace gs::util {
     void  release_memory(ptr_t allocated_memory) {
 
         if (allocated_memory == nullptr) {
-            warn_fmt("null pointer freed.");
+            WARN_STR("null pointer freed.");
             return;
         }
 

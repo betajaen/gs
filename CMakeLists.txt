@@ -6,10 +6,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(gs_common_src
         source/system/start.cpp
-        source/system/debugger.c
+        source/system/debug.c
         source/system/entry.cpp
         source/system/file.cpp
-        source/util/debug.cpp
         source/util/string.cpp
         source/util/memory.cpp
         source/util/assert.cpp
@@ -21,6 +20,7 @@ set(gs_common_include include)
 add_compile_definitions(
         gs_version="2.0.0"
         gs_debug_memory=1
+        gs_debug_min_debug_level=0
 )
 
 add_compile_options(
