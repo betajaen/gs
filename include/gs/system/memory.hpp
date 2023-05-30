@@ -1,6 +1,6 @@
 #pragma once
 
-#include <gs/util/pod.hpp>
+#include <gs/system/pod.hpp>
 
 namespace gs::system {
 

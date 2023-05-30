@@ -1,6 +1,6 @@
 #pragma once
 
-#include <gs/util/types.hpp>
+#include <gs/system/pod.hpp>
 
 namespace gs::common {
     struct configuration_t {
