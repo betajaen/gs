@@ -9,8 +9,8 @@ set(gs_common_src
         source/system/debug.c
         source/system/entry.cpp
         source/system/file.cpp
+        source/system/memory.cpp
         source/util/string.cpp
-        source/util/memory.cpp
         source/util/assert.cpp
         source/common/configuration.cpp
 )

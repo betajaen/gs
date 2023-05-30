@@ -1,10 +1,10 @@
-#include <gs/util/types.hpp>
-#include <gs/util/memory.hpp>
+#include <gs/util/pod.hpp>
+#include <gs/system/memory.hpp>
 #include <gs/system/debug.hpp>
 
 #include <proto/exec.h>
 
-namespace gs::util {
+namespace gs::system {
 
     struct allocation_t;
     struct allocation_footer_t;

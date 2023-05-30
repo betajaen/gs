@@ -1,6 +1,6 @@
 #include <proto/exec.h>
 #include <proto/dos.h>
-#include <gs/util/memory.hpp>
+#include <gs/system/memory.hpp>
 #include <gs/common/configuration.hpp>
 
 

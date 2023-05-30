@@ -1,5 +1,5 @@
 #include <gs/util/types.hpp>
-#include <gs/util/memory.hpp>
+#include <gs/system/memory.hpp>
 #include <gs/enums/return_code.hpp>
 
 

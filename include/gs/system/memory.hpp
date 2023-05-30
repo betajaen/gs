@@ -1,8 +1,8 @@
 #pragma once
 
-#include <gs/util/types.hpp>
+#include <gs/util/pod.hpp>
 
-namespace gs::util {
+namespace gs::system {
 
     template<typename T>
     inline size_t ptr_address(const T* ptr) {
