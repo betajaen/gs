@@ -28,6 +28,8 @@ namespace gs::system {
 
     void  release_memory(ptr_t allocated_memory);
 
+    void copy_memory(ptr_t dst_memory, ptr_t src_memory, size_t num_bytes);
+
 #if defined(gs_debug_memory) && gs_debug_memory == 1
     void debug_allocations();
 #endif

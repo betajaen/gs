@@ -179,4 +179,7 @@ namespace gs::system {
         FreeVec(allocation);
     }
 
+    void copy_memory(ptr_t dst_memory, ptr_t src_memory, size_t num_bytes) {
+        CopyMem(dst_memory, src_memory, num_bytes);
+    }
 }
