@@ -60,35 +60,6 @@ namespace gs::util {
         return lastIndex;
     }
 
-    optional_t<uint32_t> string_parse_unsigned_int(unsafe_cstr_t str) {
-        if (str == nullptr) {
-            return optional_t<uint32_t>();
-        }
-
-        while (*str != '\0' && *str < 33) {
-            str++;
-        }
-
-        if (*str == '\0') {
-            return optional_t<uint32_t>();
-        }
-
-        uint32_t result = 0;
-        bool parsed_number = false;
-
-        while (*str != '\0' && *str >= '0' && *str <= '9') {
-            result = result * 10 + (*str - '0');
-            str++;
-            parsed_number = true;
-        }
-
-        if (parsed_number == false) {
-            return optional_t<uint32_t>();
-        }
-
-        return optional_t<uint32_t>(result);
-    }
-
     bool string_try_parse_unsigned_int(unsafe_cstr_t str, uint32_t& out_value) {
         if (str == nullptr) {
             return false;

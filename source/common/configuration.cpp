@@ -19,9 +19,9 @@ namespace gs::common {
             // TODO - Parse from tooltypes, and maybe fill in a configuration class?
         }
         else if (__commandline != nullptr) {
-            auto rv = util::string_parse_unsigned_int(__commandline);
-            if (rv.has_value()) {
-                start_param = rv.get<uint32_t>();
+            uint32_t value;
+            if (util::string_try_parse_unsigned_int(__commandline, value)) {
+                start_param = value;
             }
         }
     }
