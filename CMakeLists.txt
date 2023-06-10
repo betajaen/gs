@@ -17,12 +17,6 @@ set(gs_common_src
 
 set(gs_common_include include)
 
-add_compile_definitions(
-        gs_version="2.0.0"
-        gs_debug_memory=1
-        gs_debug_min_debug_level=0
-)
-
 add_compile_options(
         -ldebug
         -lamiga
@@ -34,6 +28,9 @@ add_compile_options(
         -fomit-frame-pointer
         -m68020
         -Os
+        -DGS_VERSION="2.0.0"
+        -DGS_DEBUG_MEMORY=1
+        -DGS_DEBUG_LEVEL=0
 )
 
 # ------------------------------------------

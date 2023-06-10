@@ -1,27 +1,25 @@
 #include <gs/common/configuration.hpp>
 #include <gs/util/string.hpp>
 
-
-
 int __nocommandline = 1;
 extern char* __commandline;
 extern struct WBStartup* _WBenchMsg;
 
 namespace gs::common {
 
-    configuration_t g_configuration = {};
+    Configuration Configuration::s_Instance;
 
-    void configuration_t::parse_from_entry() {
+    void Configuration::ParseFromEntry() {
 
-        start_param = 0;
+        m_StartParam = 0;
 
         if (_WBenchMsg != nullptr) {
             // TODO - Parse from tooltypes, and maybe fill in a configuration class?
         }
         else if (__commandline != nullptr) {
             uint32_t value;
-            if (util::string_try_parse_unsigned_int(__commandline, value)) {
-                start_param = value;
+            if (util::CStringTryParseUInt32(__commandline, value)) {
+                m_StartParam = value;
             }
         }
     }

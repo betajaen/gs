@@ -3,40 +3,39 @@
 
 namespace gs::system {
 
-    bool read_file_t::open(unsafe_cstr_t path) {
-        if (handle != dos_nullptr) {
-            Close(handle);
+    bool ReadFile::OpenFile(unsafe_cstr_t path) {
+        if (m_Handle != dos_nullptr) {
+            Close(m_Handle);
         }
 
-        handle = Open(path, MODE_OLDFILE);
+        m_Handle = Open(path, MODE_OLDFILE);
     }
 
-    void read_file_t::close() {
-        if (handle != dos_nullptr) {
-            Close(handle);
-        }
-    }
-
-    bool read_file_t::try_read(void* data, size_t size) {
-        Read(handle, data, size);
-    }
-
-
-    bool write_file_t::open(unsafe_cstr_t path) {
-        if (handle != dos_nullptr) {
-            Close(handle);
-        }
-
-        handle = Open(path, MODE_NEWFILE);
-    }
-
-    void write_file_t::close() {
-        if (handle != dos_nullptr) {
-            Close(handle);
+    void ReadFile::CloseFile() {
+        if (m_Handle != dos_nullptr) {
+            Close(m_Handle);
         }
     }
 
-    void write_file_t::try_write(const void* data, size_t size) {
-        Write(handle, (APTR) data, size);
+    bool ReadFile::TryRead(void* data, size_t size) {
+        Read(m_Handle, data, size);
+    }
+
+    bool WriteFile::OpenFile(unsafe_cstr_t path) {
+        if (m_Handle != dos_nullptr) {
+            Close(m_Handle);
+        }
+
+        m_Handle = Open(path, MODE_NEWFILE);
+    }
+
+    void WriteFile::CloseFile() {
+        if (m_Handle != dos_nullptr) {
+            Close(m_Handle);
+        }
+    }
+
+    void WriteFile::TryWrite(const void* data, size_t size) {
+        Write(m_Handle, (APTR) data, size);
     }
 }

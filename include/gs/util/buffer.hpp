@@ -6,39 +6,39 @@
 namespace gs::util {
 
     template<typename T>
-    struct buffer_t {
+    struct Buffer {
 
     private:
 
-        T* m_data;
-        size_t m_capacity;
+        T* m_Data;
+        size_t m_Capacity;
 
     public:
 
-        buffer_t() : m_data{nullptr}, m_capacity(0UL) {}
+        Buffer() : m_Data{nullptr}, m_Capacity(0UL) {}
 
-        ~buffer_t() {
+        ~Buffer() {
             release();
         }
 
-        buffer_t(const buffer_t&) = delete;
-        buffer_t(buffer_t&) = delete;
-        buffer_t(buffer_t&&) = default;
+        Buffer(const Buffer&) = delete;
+        Buffer(Buffer&) = delete;
+        Buffer(Buffer&&) = default;
 
-        buffer_t& operator=(const buffer_t&) = delete;
-        buffer_t& operator=(buffer_t&) = delete;
-        buffer_t& operator=(buffer_t&&) = default;
+        Buffer& operator=(const Buffer&) = delete;
+        Buffer& operator=(Buffer&) = delete;
+        Buffer& operator=(Buffer&&) = default;
 
         void release() {
-            if (m_data) {
-                system::release_memory(m_data);
-                m_capacity = 0UL;
+            if (m_Data) {
+                system::ReleaseMemory(m_Data);
+                m_Capacity = 0UL;
             }
         }
 
         void set_capacity(size_t new_capacity) {
 
-            if (new_capacity == m_capacity) {
+            if (new_capacity == m_Capacity) {
                 return;
             }
 
@@ -47,34 +47,34 @@ namespace gs::util {
                 return;
             }
 
-            T* new_data = system::allocate_memory(sizeof(T) * new_capacity, false, true);
-            system::copy_memory(new_data, m_data, sizeof(T)* m_capacity);
-            system::release_memory(m_data);
-            m_data = new_data;
-            m_capacity = new_capacity;
+            T* new_data = system::AllocateMemory(sizeof(T) * new_capacity, false, true);
+            system::CopyMemory(new_data, m_Data, sizeof(T)* m_Capacity);
+            system::ReleaseMemory(m_Data);
+            m_Data = new_data;
+            m_Capacity = new_capacity;
 
         }
 
         size_t capacity() const {
-            return m_capacity;
+            return m_Capacity;
         }
 
         T* ptr() {
-            return m_data;
+            return m_Data;
         }
 
         const T* ptr() const {
-            return m_data;
+            return m_Data;
         }
 
         const T& at(size_t idx) const {
-            MUST(idx < m_capacity);
-            return m_data[idx];
+            MUST(idx < m_Capacity);
+            return m_Data[idx];
         }
 
         T& at(size_t idx) {
-            MUST(idx < m_capacity);
-            return m_data[idx];
+            MUST(idx < m_Capacity);
+            return m_Data[idx];
         }
 
         const T& operator[](size_t idx) const {

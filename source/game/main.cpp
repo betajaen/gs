@@ -4,7 +4,7 @@
 
 
 namespace gs {
-    return_code_t entry() {
-        return return_code_t::Ok;
+    ReturnCode entry() {
+        return ReturnCode::OK;
     }
 }

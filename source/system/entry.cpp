@@ -1,24 +1,24 @@
-#include <proto/exec.h>
-#include <proto/dos.h>
 #include <gs/system/memory.hpp>
 #include <gs/common/configuration.hpp>
 
+#include <proto/exec.h>
+#include <proto/dos.h>
 
 namespace gs {
-    enum class return_code_t : LONG;
+    enum class ReturnCode : LONG;
 
-    #if defined(gs_debug_memory) && gs_debug_memory == 1
+    #if defined(GS_DEBUG_MEMORY) && GS_DEBUG_MEMORY == 1
     namespace util {
-        void debug_allocations();
+        void DebugCurrentAllocations();
     }
     #endif
 
-    return_code_t entry();
+    ReturnCode entry();
 
     int main() {
 
-        common::g_configuration.parse_from_entry();
-        return_code_t rv = gs::entry();
+        common::Configuration::s_Instance.ParseFromEntry();
+        ReturnCode rv = gs::entry();
 
         return (int) rv;
     }

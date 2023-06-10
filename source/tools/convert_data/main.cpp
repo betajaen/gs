@@ -1,10 +1,10 @@
-#include <gs/util/types.hpp>
-#include <gs/util/debug.hpp>
+#include <gs/system/pod.hpp>
 #include <gs/enums/return_code.hpp>
+#include <gs/system/debug.hpp>
 
 namespace gs {
-    return_code_t entry() {
-        gs::info_fmt("gs-convert-data %s", gs_version);
-        return return_code_t::Ok;
+    ReturnCode entry() {
+        INFO_FMT("gs-convert-data %s", GS_VERSION);
+        return ReturnCode::OK;
     }
 }

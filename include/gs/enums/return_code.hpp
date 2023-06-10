@@ -2,11 +2,11 @@
 
 namespace gs {
 
-    enum class return_code_t : LONG {
-        Ok = 0,
-        Warn = 5,
-        Error = 10,
-        Fail = 20
+    enum class ReturnCode : LONG {
+        OK = 0,
+        WARN = 5,
+        ERROR = 10,
+        FAIL = 20
     };
 
 }

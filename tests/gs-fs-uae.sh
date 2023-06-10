@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -f "./include/gs/util/types.hpp" ]; then
+if [ ! -f "./include/gs/system/pod.hpp" ]; then
   echo "Error: Please run this script from the main gs directory. i.e. > sh tests/gs-fs-uae.sh"
   exit 1
 fi

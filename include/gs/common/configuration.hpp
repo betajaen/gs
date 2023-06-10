@@ -3,11 +3,11 @@
 #include <gs/system/pod.hpp>
 
 namespace gs::common {
-    struct configuration_t {
-        uint32_t start_param;
+    struct Configuration {
+        static Configuration s_Instance;
+        uint32_t m_StartParam;
 
-        void parse_from_entry();
+        void ParseFromEntry();
     };
 
-    extern configuration_t g_configuration;
 }

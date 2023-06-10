@@ -14,7 +14,7 @@ namespace gs::system {
     };
 
     struct allocation_t {
-#if defined(gs_debug_memory) && gs_debug_memory == 1
+#if defined(GS_DEBUG_MEMORY) && GS_DEBUG_MEMORY == 1
         allocation_t *next, *prev;
 #endif
         ptr_t comment;
@@ -22,7 +22,7 @@ namespace gs::system {
     };
 
 
-#if defined(gs_debug_memory) && gs_debug_memory == 1
+#if defined(GS_DEBUG_MEMORY) && GS_DEBUG_MEMORY == 1
 
     static allocation_t *g_head_allocation = nullptr, *g_tail_allocation = nullptr;
     static uint32_t g_max_allocations = 0, g_current_allocations = 0;
@@ -78,13 +78,13 @@ namespace gs::system {
 
     }
 
-    void debug_allocations() {
+    void DebugCurrentAllocations() {
 
         allocation_t* allocation = g_head_allocation;
         uint32_t counter = 0;
         while(allocation != nullptr) {
-            ptr_t user = ptr_add<ptr_t>(allocation, sizeof(allocation_t));
-            size_t size = ptr_length(user, allocation->footer);
+            ptr_t user = AddPtr<ptr_t>(allocation, sizeof(allocation_t));
+            size_t size = PtrDistance(user, allocation->footer);
             DEBUG_FMT("%lu. 0x%08lx %lu %lx", counter, (size_t) user, size, allocation->comment);
             counter++;
             allocation = allocation->next;
@@ -107,10 +107,11 @@ namespace gs::system {
 #endif
 
     bool check_allocation_guards(void* allocated_memory) {
-        allocation_t* allocation = ptr_subtract<allocation_t>(allocated_memory, sizeof(allocation_t));
+        allocation_t* allocation =
+            SubtractPtr<allocation_t>(allocated_memory, sizeof(allocation_t));
         allocation_footer_t* footer = allocation->footer;
 
-#if defined(gs_debug_memory) && gs_debug_memory == 1
+#if defined(GS_DEBUG_MEMORY) && GS_DEBUG_MEMORY == 1
         // double free
         if (check_for_allocation(allocation) == false) {
             WARN_FMT("Double free for %p.", allocated_memory);
@@ -150,7 +151,7 @@ namespace gs::system {
         footer->allocation = allocation;
         allocation->footer = footer;
 
-#if defined(gs_debug_memory) && gs_debug_memory == 1
+#if defined(GS_DEBUG_MEMORY) && GS_DEBUG_MEMORY == 1
         push_tracked_allocation(allocation);
 #endif
 
@@ -170,9 +171,10 @@ namespace gs::system {
             return;
         }
 
-        allocation_t* allocation = ptr_subtract<allocation_t>(allocated_memory, sizeof(allocation_t));
+        allocation_t* allocation =
+            SubtractPtr<allocation_t>(allocated_memory, sizeof(allocation_t));
 
-#if defined(gs_debug_memory) && gs_debug_memory == 1
+#if defined(GS_DEBUG_MEMORY) && GS_DEBUG_MEMORY == 1
         pop_tracked_allocation(allocation);
 #endif
 

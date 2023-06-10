@@ -5,33 +5,33 @@
 namespace gs::system {
 
     template<typename T>
-    inline size_t ptr_address(const T* ptr) {
+    inline size_t AddressOfPtr(const T* ptr) {
         return (size_t) ptr;
     }
 
     template<typename TA, typename TB>
-    inline size_t ptr_length(const TA* ptr_lower, const TB* ptr_higher) {
+    inline size_t PtrDistance(const TA* ptr_lower, const TB* ptr_higher) {
         return ((size_t) ptr_higher) - ((size_t) ptr_lower);
     }
 
     template<typename T, typename TA = T>
-    inline T* ptr_subtract(const TA* ptr, size_t num_bytes) {
+    inline T* SubtractPtr(const TA* ptr, size_t num_bytes) {
         return  (T*) (((uint8_t*) ptr) - num_bytes);
     }
 
     template<typename T, typename TA = T>
-    inline T* ptr_add(const TA* ptr, size_t num_bytes) {
+    inline T* AddPtr(const TA* ptr, size_t num_bytes) {
         return  (T*) (((uint8_t*) ptr) + num_bytes);
     }
 
-    ptr_t allocate_memory(size_t num_bytes, bool clear = true, bool chip = false, ptr_t comment = nullptr);
+    ptr_t AllocateMemory(size_t num_bytes, bool clear = true, bool chip = false, ptr_t comment = nullptr);
 
-    void  release_memory(ptr_t allocated_memory);
+    void  ReleaseMemory(ptr_t allocated_memory);
 
-    void copy_memory(ptr_t dst_memory, ptr_t src_memory, size_t num_bytes);
+    void CopyMemory(ptr_t dst_memory, ptr_t src_memory, size_t num_bytes);
 
-#if defined(gs_debug_memory) && gs_debug_memory == 1
-    void debug_allocations();
+#if defined(GS_DEBUG_MEMORY) && GS_DEBUG_MEMORY == 1
+    void DebugCurrentAllocations();
 #endif
 
 }

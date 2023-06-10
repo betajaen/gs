@@ -5,7 +5,7 @@
 
 namespace gs::util {
 
-    void do_assert(const char* comment) {
+    void AssertAlways(const char* comment) {
 
         if (DOSBase != nullptr) {
             size_t length = 0;

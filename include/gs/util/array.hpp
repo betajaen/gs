@@ -6,9 +6,9 @@
 namespace gs::util {
 
     template<typename T, size_t Capacity>
-    struct array_t {
+    struct Array {
     private:
-        T m_items[Capacity];
+        T m_Items[Capacity];
     public:
 
         size_t capacity() const {
@@ -16,21 +16,21 @@ namespace gs::util {
         }
 
         T* ptr() {
-            return m_items;
+            return m_Items;
         }
 
         const T* ptr() const {
-            return m_items;
+            return m_Items;
         }
 
         const T& at(size_t idx) const {
             MUST(idx < Capacity);
-            return m_items[idx];
+            return m_Items[idx];
         }
 
         T& at(size_t idx) {
             MUST(idx < Capacity);
-            return m_items[idx];
+            return m_Items[idx];
         }
 
         const T& operator[](size_t idx) const {

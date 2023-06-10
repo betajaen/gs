@@ -26,7 +26,8 @@ int main() {
         return RETURN_FAIL;
     }
 
-    INFO_STR("Goodsoup.");
+    INFO_FMT("Goodsoup %s.", GS_VERSION);
+
     rv = gs::main();
 
     exit_function:

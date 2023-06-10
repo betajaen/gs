@@ -2,7 +2,7 @@
 
 namespace gs::util {
 
-    uint32_t string_length(unsafe_cstr_t str) {
+    uint32_t CStringLength(unsafe_cstr_t str) {
         uint32_t length = 0;
         if (str != nullptr) {
             while(*str != '\0') {
@@ -13,7 +13,7 @@ namespace gs::util {
         return length;
     }
 
-    bool string_any_of(unsafe_cstr_t str, char search) {
+    bool CStringAnyOf(unsafe_cstr_t str, char search) {
         if (str == nullptr) {
             return false;
         }
@@ -28,7 +28,7 @@ namespace gs::util {
         return false;
     }
 
-    int32_t string_index_of(unsafe_cstr_t str, char search) {
+    int32_t CStringIndexOf(unsafe_cstr_t str, char search) {
         if (str == nullptr) {
             return -1;
         }
@@ -43,7 +43,7 @@ namespace gs::util {
         return it - str;
     }
 
-    int32_t string_last_index_of(unsafe_cstr_t str, char search) {
+    int32_t CStringLastIndexOf(unsafe_cstr_t str, char search) {
         if (str == nullptr) {
             return -1;
         }
@@ -60,7 +60,7 @@ namespace gs::util {
         return lastIndex;
     }
 
-    bool string_try_parse_unsigned_int(unsafe_cstr_t str, uint32_t& out_value) {
+    bool CStringTryParseUInt32(unsafe_cstr_t str, uint32_t& out_value) {
         if (str == nullptr) {
             return false;
         }
