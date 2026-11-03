@@ -83,3 +83,7 @@ From the main gs directory run:
 sh tests/gs-fs-uae.sh
 ~~~
 
+> [!NOTE]  
+> Written by Humans. This project is not written by an AI.
+
+
