@@ -16,6 +16,10 @@ Goodsoup is a partial fork and reimplementation of the following codebases:
 	- ScummVM 0.9.1 (SCUMM V8) Code by the ScummVM Team.
 	- NScumm (NScumm.Scumm) Code by Valéry Sablonnière.
 
+## Note
+
+I tend to visit this idea now and again, and tinker the code for a bit. This is not a serious project; please use the various ports of ScummVM to play Monkey Island 3 on the Amiga. One day, I may finish this, and have my dream of playing MI3 on my Amiga, but now, I have other things to do!
+
 ## Copying
 
 Goodsoup is licensed under the GNU General Public License version 3. Please refer to the
@@ -37,9 +41,9 @@ An CBM Amiga (or CBM Amiga Emulator) with the following features:-
 
 **Please note:** These may change based on development of Goodsoup.
 
-## Status (30-April-2023)
+## Status (03-November-2026)
 
-Goodsoup 2.0.0 is having a complete rewrite from scratch, from the previous version.
+Goodsoup 2.0.0 is having a complete rewrite from scratch, from the previous version. 
 
 Current efforts are the following:
 
@@ -51,6 +55,8 @@ Current efforts are the following:
 Current milestone:
 
 1. Displaying of Difficulty selection screen on AGA and RTG.
+
+
 
 ## Development Instructions
 
